@@ -1,0 +1,1619 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoNexus - OpenAI x NxtWave Buildathon 2025 Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --eco-green: #2D7A3E;
+            --tech-blue: #0066FF;
+            --dark-green: #1a4d28;
+            --light-green: #4CAF50;
+            --bg-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-secondary: #666666;
+            --accent-orange: #FF9800;
+            --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a4d28 0%, #2D7A3E 100%);
+            color: var(--text-dark);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-white);
+            margin: 20px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px 80px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 2;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: translateX(-100%);
+            z-index: 1;
+        }
+
+        /* Slide 1 - Title */
+        .slide-1 {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--eco-green) 100%);
+            color: white;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-1::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+        }
+
+        .slide-1 h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 80px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .slide-1 .subtitle {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            max-width: 900px;
+            animation: slideInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .slide-1 .team-info {
+            font-size: 20px;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .eco-icon {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            font-size: 120px;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Slide 2 - Problem */
+        .slide-2 {
+            background: linear-gradient(to bottom, #fff 0%, #ffebee 100%);
+        }
+
+        .slide-2 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            color: #c62828;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #c62828;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .stat-card h3 {
+            font-size: 36px;
+            color: #c62828;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .challenge-box {
+            background: #fff3e0;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border-left: 6px solid var(--accent-orange);
+        }
+
+        .challenge-box strong {
+            color: var(--accent-orange);
+            font-size: 20px;
+        }
+
+        /* Slide 3 - Vision */
+        .slide-3 {
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #0052cc 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 100px;
+        }
+
+        .slide-3 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .vision-text {
+            font-size: 24px;
+            line-height: 1.8;
+            font-weight: 500;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Slide 4 - What is EcoNexus */
+        .slide-4 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            color: var(--eco-green);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pillar-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--eco-green);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .pillar-card:nth-child(2) {
+            animation-delay: 0.1s;
+            border-top-color: var(--tech-blue);
+        }
+
+        .pillar-card:nth-child(3) {
+            animation-delay: 0.2s;
+            border-top-color: var(--accent-orange);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+        }
+
+        .pillar-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .pillar-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .pillar-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .unique-badge {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--eco-green);
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        /* Slide 5 - Architecture */
+        .slide-5 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .architecture-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .arch-layer {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid var(--tech-blue);
+            font-size: 18px;
+            animation: slideInLeft 0.6s ease-out;
+            position: relative;
+        }
+
+        .arch-layer:nth-child(2) { animation-delay: 0.1s; border-left-color: var(--eco-green); }
+        .arch-layer:nth-child(3) { animation-delay: 0.2s; border-left-color: var(--accent-orange); }
+        .arch-layer:nth-child(4) { animation-delay: 0.3s; border-left-color: #9C27B0; }
+
+        .arch-layer strong {
+            color: var(--eco-green);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--tech-blue);
+            border: 2px solid var(--tech-blue);
+        }
+
+        /* Slide 6 - Sustainability */
+        .slide-6 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .comparison-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .comparison-card.traditional {
+            border: 3px solid #f44336;
+        }
+
+        .comparison-card.econexus {
+            border: 3px solid var(--eco-green);
+            background: linear-gradient(to bottom, #fff 0%, #e8f5e9 100%);
+        }
+
+        .comparison-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .comparison-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        .metric-highlight {
+            background: var(--eco-green);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        /* Slide 7 - Features */
+        .slide-7 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--eco-green);
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .feature-card:nth-child(2) { animation-delay: 0.1s; border-top-color: var(--tech-blue); }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; border-top-color: var(--accent-orange); }
+        .feature-card:nth-child(4) { animation-delay: 0.3s; border-top-color: #9C27B0; }
+
+        .feature-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Slide 8 - Innovation */
+        .slide-8 {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+        }
+
+        .slide-8 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .innovation-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .innovation-feature {
+            font-size: 26px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .rise-vote-demo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .vote-button {
+            background: white;
+            color: var(--tech-blue);
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .vote-button:hover {
+            transform: scale(1.1);
+        }
+
+        .benefit-text {
+            font-size: 22px;
+            text-align: center;
+            margin-top: 40px;
+            line-height: 1.8;
+        }
+
+        /* Slide 9 - Market */
+        .slide-9 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .market-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .metric-card:nth-child(2) { animation-delay: 0.1s; }
+        .metric-card:nth-child(3) { animation-delay: 0.2s; }
+
+        .metric-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--eco-green);
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .revenue-streams {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .revenue-streams h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--eco-green);
+        }
+
+        .revenue-streams ul {
+            list-style: none;
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        .revenue-streams li::before {
+            content: "💰 ";
+            margin-right: 10px;
+        }
+
+        /* Slide 10 - Impact */
+        .slide-10 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, var(--eco-green) 0%, var(--light-green) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .impact-card:nth-child(2) { animation-delay: 0.1s; }
+        .impact-card:nth-child(3) { animation-delay: 0.2s; }
+        .impact-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .impact-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .impact-number {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .impact-label {
+            font-size: 18px;
+        }
+
+        .validation-note {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--eco-green);
+            border: 2px solid var(--eco-green);
+        }
+
+        /* Slide 11 - Roadmap */
+        .slide-11 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--eco-green);
+            transform: translateX(-50%);
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .phase-item:nth-child(2) { animation-delay: 0.1s; }
+        .phase-item:nth-child(3) { animation-delay: 0.2s; }
+        .phase-item:nth-child(4) { animation-delay: 0.3s; }
+
+        .phase-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .phase-content {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            border-left: 5px solid var(--eco-green);
+        }
+
+        .phase-item:nth-child(even) .phase-content {
+            border-left: none;
+            border-right: 5px solid var(--eco-green);
+        }
+
+        .phase-dot {
+            width: 24px;
+            height: 24px;
+            background: var(--eco-green);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .phase-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--eco-green);
+            margin-bottom: 10px;
+        }
+
+        .phase-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Slide 12 - Validation */
+        .slide-12 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .validation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .validation-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 5px solid var(--tech-blue);
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .validation-card:nth-child(2) { animation-delay: 0.1s; border-top-color: var(--eco-green); }
+        .validation-card:nth-child(3) { animation-delay: 0.2s; border-top-color: var(--accent-orange); }
+
+        .validation-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .validation-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .targets-box {
+            background: #e3f2fd;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--tech-blue);
+        }
+
+        /* Slide 13 - Competition */
+        .slide-13 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .advantage-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 5px solid var(--eco-green);
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .advantage-item:nth-child(2) { animation-delay: 0.05s; }
+        .advantage-item:nth-child(3) { animation-delay: 0.1s; }
+        .advantage-item:nth-child(4) { animation-delay: 0.15s; }
+        .advantage-item:nth-child(5) { animation-delay: 0.2s; }
+        .advantage-item:nth-child(6) { animation-delay: 0.25s; }
+
+        .checkmark {
+            font-size: 32px;
+            color: var(--eco-green);
+        }
+
+        .advantage-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .winner-badge {
+            background: var(--eco-green);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Slide 14 - Alignment */
+        .slide-14 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--eco-green);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .alignment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .alignment-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid var(--eco-green);
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .alignment-card:nth-child(2) { animation-delay: 0.1s; border-left-color: var(--tech-blue); }
+        .alignment-card:nth-child(3) { animation-delay: 0.2s; border-left-color: var(--accent-orange); }
+        .alignment-card:nth-child(4) { animation-delay: 0.3s; border-left-color: #9C27B0; }
+
+        .alignment-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--eco-green);
+        }
+
+        .alignment-card p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Slide 15 - CTA */
+        .slide-15 {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--eco-green) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .slide-15 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            margin-bottom: 60px;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .cta-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .cta-card:nth-child(2) { animation-delay: 0.1s; }
+        .cta-card:nth-child(3) { animation-delay: 0.2s; }
+
+        .cta-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .cta-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .cta-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cta-card p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            font-size: 22px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 16px 16px;
+            margin: 0 20px 20px 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--eco-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--eco-green);
+            border: 2px solid var(--eco-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--eco-green);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--eco-green);
+            transition: width var(--transition);
+        }
+
+        /* Speaker Notes Sidebar */
+        .speaker-notes {
+            width: 350px;
+            background: rgba(26, 26, 26, 0.95);
+            color: white;
+            padding: 30px;
+            overflow-y: auto;
+            border-radius: 16px 0 0 16px;
+            margin: 20px 0 20px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .speaker-notes.hidden {
+            transform: translateX(100%);
+            margin-right: -350px;
+        }
+
+        .speaker-notes h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--light-green);
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 10px;
+        }
+
+        .speaker-notes p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .toggle-notes {
+            position: absolute;
+            top: 30px;
+            right: 390px;
+            background: var(--eco-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .toggle-notes:hover {
+            background: var(--dark-green);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .slide {
+                padding: 40px 50px;
+            }
+            
+            .slide-1 h1 {
+                font-size: 60px;
+            }
+            
+            .slide-1 .subtitle {
+                font-size: 22px;
+            }
+
+            .speaker-notes {
+                width: 300px;
+            }
+
+            .toggle-notes {
+                right: 340px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pillars-container,
+            .comparison-container,
+            .features-grid,
+            .market-metrics,
+            .impact-grid,
+            .alignment-grid,
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .speaker-notes {
+                display: none;
+            }
+
+            .toggle-notes {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <button class="toggle-notes" onclick="toggleNotes()">Toggle Notes</button>
+        
+        <div class="main-content">
+            <div class="slide-container">
+                <!-- Slide 1: Title -->
+                <div class="slide slide-1 active" data-slide="1">
+                    <h1>EcoNexus</h1>
+                    <div class="subtitle">
+                        Democratizing Climate Action Through Sustainable Edge AI &amp; Community Intelligence
+                    </div>
+                    <div class="team-info">
+                        Team Leader: Ramachandran S | OpenAI x NxtWave Buildathon 2025
+                    </div>
+                    <div class="eco-icon">🌱</div>
+                </div>
+
+                <!-- Slide 2: Problem -->
+                <div class="slide slide-2" data-slide="2">
+                    <h2>The Climate Crisis is Devastating India</h2>
+                    <div class="stat-card">
+                        <h3>3,000+</h3>
+                        <p>Annual climate-related deaths in India</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>269%</h3>
+                        <p>Increase in extreme weather deaths over 25 years</p>
+                    </div>
+                    <div class="challenge-box">
+                        <strong>The Challenge:</strong><br>
+                        Traditional AI consumes massive energy - contradicting climate goals
+                    </div>
+                </div>
+
+                <!-- Slide 3: Vision -->
+                <div class="slide slide-3" data-slide="3">
+                    <h2>Our Winning Vision</h2>
+                    <div class="vision-text">
+                        EcoNexus ignites India's climate revolution by unleashing the collective power of 450M+ citizens through the world's first carbon-aware community platform—where breakthrough sustainable edge AI meets unity-driven activism, transforming every smartphone into a climate action weapon that tracks verified environmental victories, amplifies grassroots solutions through breakthrough climate crisis impact prioritization, and creates unstoppable waves of measurable impact that could prevent thousands of climate-related deaths devastating India—all powered by renewable energy and running on the very edge devices already in people's pockets, proving that the future of our planet lies not in energy-hungry data centers, but in the passionate hearts and smart devices of everyday environmental heroes.
+                    </div>
+                </div>
+
+                <!-- Slide 4: What is EcoNexus -->
+                <div class="slide slide-4" data-slide="4">
+                    <h2>What is EcoNexus?</h2>
+                    <div class="pillars-container">
+                        <div class="pillar-card">
+                            <div class="pillar-icon">📊</div>
+                            <h3>Impact Tracking</h3>
+                            <p>Monitor personal environmental actions with quantified metrics</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon">🤝</div>
+                            <h3>Community Intelligence</h3>
+                            <p>Discover events, collaborate locally, celebrate together</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon">🤖</div>
+                            <h3>Sustainable AI</h3>
+                            <p>Personalized recommendations at 90% less energy</p>
+                        </div>
+                    </div>
+                    <div class="unique-badge">
+                        Only platform combining sustainable edge AI with community activism
+                    </div>
+                </div>
+
+                <!-- Slide 5: Architecture -->
+                <div class="slide slide-5" data-slide="5">
+                    <h2>Solution Architecture: Edge-First Design</h2>
+                    <div class="architecture-diagram">
+                        <div class="arch-layer">
+                            <strong>Frontend Layer:</strong> Next.js 16, React, Tailwind CSS
+                        </div>
+                        <div class="arch-layer">
+                            <strong>Backend Layer:</strong> Firebase, Supabase, RESTful APIs
+                        </div>
+                        <div class="arch-layer">
+                            <strong>Edge AI Layer:</strong> TensorFlow Lite lightweight models
+                        </div>
+                        <div class="arch-layer">
+                            <strong>Data Layer:</strong> User actions, events, community metrics
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        ⚡ Edge-first design minimizes energy consumption
+                    </div>
+                </div>
+
+                <!-- Slide 6: Sustainability -->
+                <div class="slide slide-6" data-slide="6">
+                    <h2>90% Energy Reduction Through Edge AI</h2>
+                    <div class="comparison-container">
+                        <div class="comparison-card traditional">
+                            <div class="comparison-icon">☁️</div>
+                            <h3>Traditional Cloud AI</h3>
+                            <ul>
+                                <li>❌ High energy consumption</li>
+                                <li>❌ Slow response time</li>
+                                <li>❌ Privacy concerns</li>
+                                <li>❌ 2-3g CO2 per suggestion</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card econexus">
+                            <div class="comparison-icon">📱</div>
+                            <h3>EcoNexus Edge AI</h3>
+                            <ul>
+                                <li>✅ 90% less energy</li>
+                                <li>✅ Instant response</li>
+                                <li>✅ Privacy-first</li>
+                                <li>✅ 0.5g CO2 per suggestion</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="metric-highlight">
+                        🌍 75% CO2 reduction | Partnership with Ziroh Labs
+                    </div>
+                </div>
+
+                <!-- Slide 7: Features -->
+                <div class="slide slide-7" data-slide="7">
+                    <h2>Core Features in Action</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">✅</div>
+                            <h3>Action Logging</h3>
+                            <p>Track environmental victories: trees planted, waste reduced, water conserved</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💡</div>
+                            <h3>AI Suggestions</h3>
+                            <p>Personalized recommendations powered by sustainable edge AI</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🗺️</div>
+                            <h3>Event Discovery</h3>
+                            <p>Interactive map showing nearby environmental events and initiatives</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <h3>Community Feed</h3>
+                            <p>Share achievements, collaborate on projects, celebrate together</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 8: Innovation -->
+                <div class="slide slide-8" data-slide="8">
+                    <h2>Revolutionary Climate Crisis Impact Prioritization</h2>
+                    <div class="innovation-content">
+                        <div class="innovation-feature">
+                            🔥 Rise Vote System: Community-Driven Prioritization
+                        </div>
+                        <div class="rise-vote-demo">
+                            <div class="vote-button">⬆️ RISE VOTE</div>
+                            <div style="font-size: 40px;">→</div>
+                            <div class="vote-button">📈 URGENT</div>
+                        </div>
+                        <div class="benefit-text">
+                            Users can see which environmental problems need immediate attention.<br>
+                            Community votes elevate urgent climate issues to the top.<br>
+                            <strong>Every voice amplifies the movement for change.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 9: Market -->
+                <div class="slide slide-9" data-slide="9">
+                    <h2>Market Potential</h2>
+                    <div class="market-metrics">
+                        <div class="metric-card">
+                            <div class="metric-number">450M+</div>
+                            <div class="metric-label">Target Users<br>(Environmentally Conscious India)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">100K+</div>
+                            <div class="metric-label">Events Annually<br>(Engagement Opportunities)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-number">$1-2M+</div>
+                            <div class="metric-label">Revenue Potential<br>(Year 3)</div>
+                        </div>
+                    </div>
+                    <div class="revenue-streams">
+                        <h3>Multi-Revenue Streams</h3>
+                        <ul>
+                            <li>Freemium subscriptions</li>
+                            <li>Organizational licensing</li>
+                            <li>Carbon marketplace integration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Slide 10: Impact -->
+                <div class="slide slide-10" data-slide="10">
+                    <h2>Environmental Impact (Year 1 Conservative Projections)</h2>
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <div class="impact-icon">🌳</div>
+                            <div class="impact-number">250,000</div>
+                            <div class="impact-label">Trees Tracked/Planted</div>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-icon">🌍</div>
+                            <div class="impact-number">25,000</div>
+                            <div class="impact-label">Metric Tons CO2 Offset<br>(5,500 cars removed)</div>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-icon">💧</div>
+                            <div class="impact-number">50M</div>
+                            <div class="impact-label">Gallons Water Conserved</div>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-icon">♻️</div>
+                            <div class="impact-number">500K</div>
+                            <div class="impact-label">Pounds Waste Diverted</div>
+                        </div>
+                    </div>
+                    <div class="validation-note">
+                        ✓ All verified through environmental science partnerships
+                    </div>
+                </div>
+
+                <!-- Slide 11: Roadmap -->
+                <div class="slide slide-11" data-slide="11">
+                    <h2>Implementation Roadmap</h2>
+                    <div class="roadmap-timeline">
+                        <div class="timeline-line"></div>
+                        <div class="phase-item">
+                            <div class="phase-content">
+                                <div class="phase-title">Phase 1 (Week 1-4)</div>
+                                <div class="phase-desc">MVP &amp; Hackathon - Deliver working platform</div>
+                            </div>
+                            <div class="phase-dot"></div>
+                        </div>
+                        <div class="phase-item">
+                            <div class="phase-content">
+                                <div class="phase-title">Phase 2 (Month 1-2)</div>
+                                <div class="phase-desc">Scale Backend - Database migration, real ML models</div>
+                            </div>
+                            <div class="phase-dot"></div>
+                        </div>
+                        <div class="phase-item">
+                            <div class="phase-content">
+                                <div class="phase-title">Phase 3 (Month 2-4)</div>
+                                <div class="phase-desc">Partnerships - NGO/corporate/government partnerships</div>
+                            </div>
+                            <div class="phase-dot"></div>
+                        </div>
+                        <div class="phase-item">
+                            <div class="phase-content">
+                                <div class="phase-title">Phase 4 (Month 4-12)</div>
+                                <div class="phase-desc">Global Scale - 100K+ users, market leadership</div>
+                            </div>
+                            <div class="phase-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 12: Validation -->
+                <div class="slide slide-12" data-slide="12">
+                    <h2>Validation Strategy</h2>
+                    <div class="validation-grid">
+                        <div class="validation-card">
+                            <h3>🎓 University Campuses</h3>
+                            <p>3-5 universities<br>1,000 students each<br>Student engagement focus</p>
+                        </div>
+                        <div class="validation-card">
+                            <h3>🌿 Environmental Organizations</h3>
+                            <p>NGO partnerships<br>Local events<br>Community validation</p>
+                        </div>
+                        <div class="validation-card">
+                            <h3>🏢 Corporate Programs</h3>
+                            <p>Employee engagement<br>CSR initiatives<br>Enterprise adoption</p>
+                        </div>
+                    </div>
+                    <div class="targets-box">
+                        📊 Success Metrics: 50%+ WAU | 30%+ Event Attendance | 20%+ Adoption
+                    </div>
+                </div>
+
+                <!-- Slide 13: Competition -->
+                <div class="slide slide-13" data-slide="13">
+                    <h2>Competitive Advantage</h2>
+                    <div class="advantages-grid">
+                        <div class="advantage-item">
+                            <div class="checkmark">✓</div>
+                            <div class="advantage-text">Personal Impact Tracking</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="checkmark">✓</div>
+                            <div class="advantage-text">Edge-Based AI</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="checkmark">✓</div>
+                            <div class="advantage-text">Event Discovery</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="checkmark">✓</div>
+                            <div class="advantage-text">Community Impact Focus</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="checkmark">✓</div>
+                            <div class="advantage-text">Privacy-First Design</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="checkmark">✓</div>
+                            <div class="advantage-text">Quantified Metrics</div>
+                        </div>
+                    </div>
+                    <div class="winner-badge">
+                        🏆 Only platform with all 6 competitive advantages
+                    </div>
+                </div>
+
+                <!-- Slide 14: Alignment -->
+                <div class="slide slide-14" data-slide="14">
+                    <h2>Why EcoNexus for GreenMind?</h2>
+                    <div class="alignment-grid">
+                        <div class="alignment-card">
+                            <h3>✓ INNOVATION</h3>
+                            <p>Edge AI + social impact unprecedented. Revolutionary approach to climate tech.</p>
+                        </div>
+                        <div class="alignment-card">
+                            <h3>✓ SUSTAINABILITY</h3>
+                            <p>90% energy reduction with renewable operation. Practice what we preach.</p>
+                        </div>
+                        <div class="alignment-card">
+                            <h3>✓ VIABILITY</h3>
+                            <p>450M+ market with clear business model. Proven path to profitability.</p>
+                        </div>
+                        <div class="alignment-card">
+                            <h3>✓ IMPACT</h3>
+                            <p>Prevents thousands of climate deaths, massive CO2 reduction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 15: CTA -->
+                <div class="slide slide-15" data-slide="15">
+                    <h2>The Future of Our Planet Starts Today</h2>
+                    <div class="cta-grid">
+                        <div class="cta-card">
+                            <div class="cta-icon">🚀</div>
+                            <h3>JOIN THE MOVEMENT</h3>
+                            <p>Help us reach 450M+ environmental champions</p>
+                        </div>
+                        <div class="cta-card">
+                            <div class="cta-icon">🤝</div>
+                            <h3>PARTNER WITH US</h3>
+                            <p>NGOs, corporations, governments welcome</p>
+                        </div>
+                        <div class="cta-card">
+                            <div class="cta-icon">💚</div>
+                            <h3>SUPPORT SUSTAINABLE AI</h3>
+                            <p>Fund the technology for climate action</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        Team EcoNexus - GreenMind Hackathon 2025
+                    </div>
+                </div>
+
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="controls">
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="previousSlide()" id="prevBtn">← Previous</button>
+                    <button class="btn btn-primary" onclick="nextSlide()" id="nextBtn">Next →</button>
+                </div>
+                <div class="slide-counter" id="slideCounter">1 of 15</div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="speaker-notes" id="speakerNotes">
+            <h3>Speaker Notes - Slide 1</h3>
+            <p id="notesContent">Welcome judges to EcoNexus presentation. Establish energy and passion for climate action.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 15;
+        
+        const speakerNotes = {
+            1: "Welcome judges to EcoNexus presentation. Establish energy and passion for climate action.",
+            2: "Set the emotional context - real people are dying from climate impacts today.",
+            3: "This is the winning sentence we crafted. Let it sink in. Pause after reading.",
+            4: "EcoNexus is a three-pillar platform. Each pillar solves a specific problem.",
+            5: "Our architecture is modular, scalable, and edge-first.",
+            6: "This is our innovation. Show the energy comparison clearly.",
+            7: "Walk through each feature briefly. Show the impact each one creates.",
+            8: "Explain how rise voting lets communities prioritize climate issues.",
+            9: "450M+ is a real market. Show the business sustainability.",
+            10: "These are conservative projections. Emphasize validation through partners.",
+            11: "Clear path from MVP to scale. Ask for support at key phases.",
+            12: "We're not building in isolation. Show university/NGO validation approach.",
+            13: "We beat everyone on feature count AND sustainability.",
+            14: "Perfect alignment with GreenMind's four core objectives.",
+            15: "Strong close. Invite judges to be part of the movement."
+        };
+
+        function updateSlide(newSlide) {
+            if (newSlide < 1 || newSlide > totalSlides) return;
+            
+            const currentSlideEl = document.querySelector('.slide.active');
+            const newSlideEl = document.querySelector(`.slide-${newSlide}`);
+            
+            if (newSlide > currentSlide) {
+                currentSlideEl.classList.add('prev');
+                currentSlideEl.classList.remove('active');
+            } else {
+                currentSlideEl.classList.remove('active', 'prev');
+            }
+            
+            setTimeout(() => {
+                currentSlideEl.classList.remove('prev');
+                newSlideEl.classList.add('active');
+                newSlideEl.classList.remove('prev');
+            }, 50);
+            
+            currentSlide = newSlide;
+            updateUI();
+        }
+
+        function updateUI() {
+            // Update counter
+            document.getElementById('slideCounter').textContent = `${currentSlide} of ${totalSlides}`;
+            
+            // Update progress bar
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Restart' : 'Next →';
+            
+            // Update speaker notes
+            document.getElementById('notesContent').textContent = speakerNotes[currentSlide];
+            document.querySelector('.speaker-notes h3').textContent = `Speaker Notes - Slide ${currentSlide}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide === totalSlides) {
+                updateSlide(1);
+            } else {
+                updateSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                updateSlide(currentSlide - 1);
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function toggleNotes() {
+            document.getElementById('speakerNotes').classList.toggle('hidden');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            } else if (e.key === 'n' || e.key === 'N') {
+                toggleNotes();
+            }
+        });
+
+        // Initialize
+        updateUI();
+    </script>
+</body>
+</html>
